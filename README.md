@@ -6,6 +6,10 @@
 Enhanced Resource allows you to view resource with a name and an icon per instance directly inside you editor.
 It is part of the "Enhanced" addon suite, a collection of tools designed to extend the power of the Godot Engine. From inventory systems to state charts, the Enhanced suite offers a plethora of tools for game development.
 
+Without             |  With
+:-------------------------:|:-------------------------:
+![](https://raw.githubusercontent.com/Zennyth/EnhancedResource/main/examples/without.png)  |  ![](https://raw.githubusercontent.com/Zennyth/EnhancedResource/main/examples/with.png)
+
 ## Table of Contents
 
 - [✨ Enhanced Resource Addon for Godot 4.1](#-enhanced-resource-addon-for-godot-41)
@@ -24,11 +28,13 @@ It is part of the "Enhanced" addon suite, a collection of tools designed to exte
 
 ## Usage 🕹️
 
-Once the addon is enabled, you will have access to a host of nodes, tools, and utilities that you can use directly in your game scenes. Navigate to the `addons/enhanced_resource/scripts/` directory to explore and use the available scripts.
+Once the addon is enabled, you will have access to a host of nodes, tools, and utilities that you can use directly in your game scenes. Navigate to the `addons/enhanced_resource/` directory to explore and use the available scripts.
 
 ## Documentation 📚
 
-For a deeper dive into each feature, tutorials, and best practices, refer to the [official documentation](./docs/). Additionally, you can find some sample assets for prototyping in the `docs/assets` directory.
+Under `Project > Project Settings > Editor > Resource`, you will find the properties for the name and the icon of the resources you want to display in the editor. You can change it to your liking.
+
+There is also the class `EnhancedResource` that directly implement the default settings however, you do not need to inherit from it if you don't want to, just add the property into your resource and it will change automatically.
 
 ## Contribute 🤝
 
