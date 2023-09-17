@@ -1,0 +1,12 @@
+config_version=5
+
+[application]
+
+config/name="Enhanced Resource"
+config/features=PackedStringArray("4.2", "Forward Plus")
+config/icon="res://icon.png"
+config/tags=PackedStringArray("addon")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/enhanced_resource/plugin.cfg")
