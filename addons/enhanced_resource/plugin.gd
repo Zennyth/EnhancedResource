@@ -1,15 +1,23 @@
 @tool
 extends EditorPlugin
 
+const EnhancedResourcePreviewer = preload("res://addons/enhanced_resource/enhanced_resource_previewer.gd")
+
+
 ###
 # INITIALIZATION
 ###
+var enhanced_resource_previewer: EnhancedResourcePreviewer
+
 func _enter_tree() -> void:
+	enhanced_resource_previewer = EnhancedResourcePreviewer.new()
+	get_editor_interface().get_resource_previewer().add_preview_generator(enhanced_resource_previewer)
 	initialize_settings()
 	get_tree().node_added.connect(_on_node_added)
 
 func _exit_tree() -> void:
 	get_tree().node_added.disconnect(_on_node_added)
+	get_editor_interface().get_resource_previewer().add_preview_generator(enhanced_resource_previewer)
 
 
 ###
@@ -62,6 +70,8 @@ func change_button(button: Button, resource_picker: EditorResourcePicker) -> voi
 	if resource_picker == null or resource_picker.edited_resource == null:
 		return
 	
+	await get_tree().create_timer(.01).timeout
+
 	var resource: Resource = resource_picker.edited_resource
 
 	var name_key: String = ProjectSettings.get_setting(SETTINGS_NAME_PATH) 
@@ -71,3 +81,9 @@ func change_button(button: Button, resource_picker: EditorResourcePicker) -> voi
 	var icon_key: String = ProjectSettings.get_setting(SETTINGS_ICON_PATH) 
 	if icon_key in resource and resource.get(icon_key) != null:
 		button.icon = resource.get(icon_key)
+
+		button.custom_minimum_size = Vector2(button.size.x, 30)
+		button.reset_size()
+	
+		if button.get_child_count() > 0 and button.get_child(0) is TextureRect:
+			button.remove_child(button.get_child(0))
